@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="hyperlink"><a href="R">geeksforgeeks.org</a></string>
+</resources>
