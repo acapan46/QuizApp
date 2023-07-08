@@ -55,12 +55,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // assign action to Book List button
-        Button btnBookList = findViewById(R.id.btnStartQuiz);
-        btnBookList.setOnClickListener(new View.OnClickListener() {
+        Button btnStart = findViewById(R.id.btnStartQuiz);
+        btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // forward user to BookListActivity
-                Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
+                String name=  user.getUsername();
+                Intent intent=new Intent(getApplicationContext(),QuizActivity.class);
+                intent.putExtra("myname",name);
                 startActivity(intent);
             }
         });

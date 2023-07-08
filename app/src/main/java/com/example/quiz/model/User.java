@@ -12,6 +12,30 @@ public class User {
     private int is_active;
     private String secret;
 
+    public User(){
+        id = 0;
+        email = "";
+        username = "";
+        password = "";
+        token = "";
+        lease = "";
+        role = "";
+        is_active = 0;
+        secret = "";
+    }
+
+    public User(int id, String email, String username, String password, String token, String lease, String role, int is_active, String secret) {
+        this.id = id;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.token = token;
+        this.lease = lease;
+        this.role = role;
+        this.is_active = is_active;
+        this.secret = secret;
+    }
+
     public int getId() {
         return id;
     }

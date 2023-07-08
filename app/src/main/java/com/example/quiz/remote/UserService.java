@@ -22,5 +22,15 @@ public interface UserService {
     @POST("api/users/login")
     Call<User> loginEmail(@Field("email") String email, @Field("password") String
             password);
+
+    //@POST("api/users")
+    //Call<User> addUser(@Header ("api-key") String apiKey, @Body User user);
+
+    @FormUrlEncoded
+    @POST("api/users/register")
+    Call<User> regUser(@Field("id") int id, @Field("email") String email, @Field("username") String username, @Field("password")
+    String password, @Field("token") String token, @Field("lease") String lease, @Field("role") String role,
+                       @Field("is_active") int is_active, @Field("secret") String secret);
+
 }
 
