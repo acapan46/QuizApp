@@ -107,5 +107,20 @@ public class User {
     public void setSecret(String secret) {
         this.secret = secret;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", token='" + token + '\'' +
+                ", lease='" + lease + '\'' +
+                ", role='" + role + '\'' +
+                ", is_active='" + is_active + '\'' +
+                ", secret='" + secret + '\'' +
+                '}';
+    }
 }
 

@@ -84,12 +84,12 @@ public class UserRegister extends AppCompatActivity {
                 System.out.println(role);
                 System.out.println(is_active);
                 System.out.println(secret);
-                //User u = new User(0, email, username, password, token, lease, role, is_active, secret);
+                User u = new User(0, email, username, password, token, lease, role, is_active, secret);
+                String api = "b8b051e8-330b-413e-8a41-a95b839d11c4";
 
-
-                // send request to add new book to the REST API
+                // send request to add new user to the REST API
                 UserService userService = ApiUtils.getUserService();
-                Call<User> call = userService.regUser(0, email, username, password, token, lease, role, is_active, secret);
+                Call<User> call = userService.regUser("b8b051e8-330b-413e-8a41-a95b839d11c4",0, email, username, password, token, lease, role, is_active, secret);
                 // execute
                 call.enqueue(new Callback<User>() {
                     @Override
