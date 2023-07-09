@@ -37,7 +37,6 @@ public class DeleteQuizActivity extends AppCompatActivity {
     QuestionService questionService;
     Context context;
     RecyclerView questionList;
-
     QuestionAdapter adapter;
 
     @Override
@@ -52,44 +51,11 @@ public class DeleteQuizActivity extends AppCompatActivity {
         //register for context menu
         registerForContextMenu(questionList);
 
-        // get user info from SharedPreferences
-        User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
+        // update listview
+        updateListView();
 
-        // get book service instance
-        questionService = ApiUtils.getQuestionService();
-
-        // execute the call. send the user token when sending the query
-        questionService.getAllQuestion(user.getToken()).enqueue(new Callback<List<qQuestion>>() {
-            @Override
-            public void onResponse(Call<List<qQuestion>> call, Response<List<qQuestion>> response) {
-                // for debug purpose
-                Log.d("MyApp:", "Response: " + response.raw().toString());
-
-                // Get list of book object from response
-                List<qQuestion> questions = response.body();
-
-                // initialize adapter
-                QuestionAdapter adapter = new QuestionAdapter(context, questions);
-
-                // set adapter to the RecyclerView
-                questionList.setAdapter(adapter);
-
-                // set layout to recycler view
-                questionList.setLayoutManager(new LinearLayoutManager(context));
-
-                // add separator between item in the list
-                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(questionList.getContext(),
-                        DividerItemDecoration.VERTICAL);
-                questionList.addItemDecoration(dividerItemDecoration);
-            }
-
-            @Override
-            public void onFailure(Call<List<qQuestion>> call, Throwable t) {
-                Toast.makeText(context, "Error connecting to the server", Toast.LENGTH_LONG).show();
-                Log.e("MyApp:", t.getMessage());
-            }
-        });
     }
+
     /**
      * Fetch data for ListView
      */
@@ -138,6 +104,7 @@ public class DeleteQuizActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         MenuInflater inflater = getMenuInflater();
@@ -149,7 +116,6 @@ public class DeleteQuizActivity extends AppCompatActivity {
         qQuestion selectedQuestion = adapter.getSelectedItem();
         Log.d("MyApp", "selected "+selectedQuestion.toString());
         switch (item.getItemId()) {
-
             case R.id.menu_delete://should match the id in the context menu file
                 doDeleteQuestion(selectedQuestion);
                 break;
@@ -176,11 +142,11 @@ public class DeleteQuizActivity extends AppCompatActivity {
             public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
                 if (response.code() == 200) {
                     // 200 means OK
-                    displayAlert("Book successfully deleted");
+                    displayAlert("Question successfully deleted");
                     // update data in list view
                     updateListView();
                 } else {
-                    displayAlert("Book failed to delete");
+                    displayAlert("Question failed to delete");
                     Log.e("MyApp:", response.raw().toString());
                 }
             }
@@ -192,6 +158,7 @@ public class DeleteQuizActivity extends AppCompatActivity {
             }
         });
     }
+
     /**
      * Displaying an alert dialog with a single button
      * @param message - message to be displayed
