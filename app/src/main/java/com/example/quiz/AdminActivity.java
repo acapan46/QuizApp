@@ -71,6 +71,15 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btnUpQuestion = findViewById(R.id.btnUpQuestion)
+        btnDelQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),DeleteQuizActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

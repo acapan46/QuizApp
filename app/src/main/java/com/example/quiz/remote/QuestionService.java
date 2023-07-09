@@ -26,9 +26,12 @@ public interface QuestionService {
 
     @GET("api/question")
     Call<List<qQuestion>> getAllQuestion(@Header("api-key") String api_key);
+
+    @GET("api/book/{id}")
+    Call<qQuestion> getQuestion(@Header("api-key") String api_key, @Path("qid") float qid);
     
     /**
-     * Add score by sending a single Book JSON
+     * Add score by sending a single Question JSON
      */
     @POST("api/question")
     Call<qQuestion> addQuestion(@Header ("api-key") String apiKey, @Body qQuestion q);
@@ -39,5 +42,10 @@ public interface QuestionService {
      */
     @POST("api/question/delete/{qid}")
     Call<DeleteResponse> deleteQuestion(@Header ("api-key") String apiKey, @Path("qid") float qid);
+    /**
+     * Update question by sending a single Book JSON
+     */
+    @POST("api/question/update/{qid}")
+    Call<qQuestion> updateQuestion(@Header ("api-key") String apiKey, @Body qQuestion q);
 
 }

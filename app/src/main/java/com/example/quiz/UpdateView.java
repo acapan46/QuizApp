@@ -5,9 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,12 +13,9 @@ import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.quiz.adapter.QuestionAdapter;
-import com.example.quiz.model.DeleteResponse;
-import com.example.quiz.model.Question;
 import com.example.quiz.model.SharedPrefManager;
 import com.example.quiz.model.User;
 import com.example.quiz.model.qQuestion;
@@ -33,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DeleteQuizActivity extends AppCompatActivity {
+public class UpdateView extends AppCompatActivity {
 
     QuestionService questionService;
     Context context;
@@ -101,10 +96,7 @@ public class DeleteQuizActivity extends AppCompatActivity {
         qQuestion selectedQuestion = adapter.getSelectedItem();
         Log.d("MyApp", "selected "+selectedQuestion.toString());
 
-        if(item.getItemId() == R.id.menu_delete){
-            //doDelete(selectedBook);
-        }
-        else if(item.getItemId() == R.id.menu_update){
+        if(item.getItemId() == R.id.menu_update){
             doUpdate(selectedQuestion);
         }
         return super.onContextItemSelected(item);

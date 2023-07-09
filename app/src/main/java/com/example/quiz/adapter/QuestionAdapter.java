@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quiz.R;
 import com.example.quiz.model.qQuestion;
-
-import java.text.BreakIterator;
 import java.util.List;
 
 
@@ -22,7 +19,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     /**
      * Create ViewHolder class to bind list item view
      */
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
 
 //        public TextView tvOption1;
 //        public TextView tvOption2;
@@ -34,14 +31,28 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-
             tvContent = (TextView) itemView.findViewById(R.id.tvContent);
      //       btnDel = (Button) itemView.findViewById(R.id.btnDel);
+            itemView.setOnLongClickListener(this::onLongClick);
+        }
+        @Override
+        public boolean onLongClick(View view) {
+            currentPos = getAdapterPosition(); //key point, record the position here
+            return false;
         }
     }
 
     private List<qQuestion> mListData;   // list of book objects
     private Context mContext;       // activity context
+
+    private int currentPos;
+
+    public qQuestion getSelectedItem() {
+        if(currentPos>=0 && mListData!=null && currentPos<mListData.size()) {
+            return mListData.get(currentPos);
+        }
+        return null;
+    }
 
     public QuestionAdapter(Context context, List<qQuestion> listData){
         mListData = listData;
