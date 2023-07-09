@@ -7,23 +7,142 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="com.example.quiz.ResultsActivity">
+    android:background="@drawable/wallpaper"
+    tools:context=".ResultsActivity">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:useDefaultMargins="true"
+        android:alignmentMode="alignBounds"
+        android:columnOrderPreserved="false"
+        android:layout_marginTop="30dp"
+        android:columnCount="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+                <TextView
+                    android:layout_columnSpan="2"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/blackwagoon"
+                    android:text="Final Score"
+                    android:textSize="40dip" />
+
+                <TextView
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:text="How clever you are?"
+                    android:textSize="16dip" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#F44336">
+                <ImageView
+                    android:id="@+id/wrong"
+                    android:layout_width="81dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:src="@drawable/cross">
+                </ImageView>
+                <TextView
+                    android:id="@+id/tvres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Wrong answer = "
+                    android:layout_marginTop="31dp"
+                    android:fontFamily="@font/blackwagoon"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    android:textSize="19dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#76FF03">
+                <ImageView
+                    android:id="@+id/right"
+                    android:layout_width="81dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:src="@drawable/correct">
+                </ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Correct Answer = "
+                    android:id="@+id/tvres2"
+                    android:layout_below="@+id/tvres"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="31dp"
+                    android:fontFamily="@font/blackwagoon"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    android:textSize="19dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#FFEB3B">
+                <ImageView
+                    android:id="@+id/equal"
+                    android:layout_width="81dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:src="@drawable/equals">
+                </ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Total Score = "
+                    android:id="@+id/tvres3"
+                    android:layout_below="@+id/tvres2"
+                    android:layout_marginTop="33dp"
+                    android:fontFamily="@font/blackwagoon"
+                    android:layout_alignRight="@+id/tvres2"
+                    android:layout_alignEnd="@+id/tvres2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    android:textSize="19dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </GridLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/tvres"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:background="#F44336"
-        android:textColor="#000000"
-        android:textAlignment="center"
-        android:textSize="19dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="153dp"
+        android:textStyle="bold"
+        android:text="Want to try again?"
+        android:textAlignment="center"></TextView>
 
     <Button
         android:layout_width="match_parent"
@@ -31,43 +150,11 @@
         android:text="Main Menu"
         android:id="@+id/btnRestart"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="119dp"
+        android:layout_marginBottom="105dp"
         android:layout_alignParentLeft="true"
+        android:textSize="15dp"
+        android:fontFamily="@font/blackwagoon"
         android:layout_alignParentStart="true"
-        android:background="#01579B"
+        android:backgroundTint="#00008B"
         android:textColor="#ffffff" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/tvres2"
-        android:background="#76FF03"
-        android:layout_below="@+id/tvres"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="31dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textColor="#000000"
-        android:textAlignment="center"
-        android:textSize="19dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/tvres3"
-        android:background="#FFEB3B"
-        android:layout_below="@+id/tvres2"
-        android:layout_marginTop="33dp"
-        android:layout_alignRight="@+id/tvres2"
-        android:layout_alignEnd="@+id/tvres2"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#000000"
-        android:textAlignment="center"
-        android:textSize="19dp" />
 </RelativeLayout>
