@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_marginBottom="2dp"
+    >
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="104dp"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="6dp"
+        android:text="TextView"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+<!--    <Button-->
+<!--        android:id="@+id/btnDel"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginStart="138dp"-->
+<!--        android:layout_marginEnd="69dp"-->
+<!--        android:layout_toEndOf="@+id/tvContent"-->
+<!--        android:text="Button" />-->
+
+
+</RelativeLayout>
