@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/radiocolor"
+            android:background="@color/white"
             android:textSize="16sp" />
 
         <!-- Option 2 -->
@@ -90,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/radiocolor"
+            android:background="@color/white"
             android:textSize="16sp" />
 
         <!-- Option 3 -->
@@ -98,7 +98,7 @@
             android:id="@+id/rbOption3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/radiocolor"
+            android:background="@color/white"
             android:layout_marginTop="10dp"
             android:textSize="16sp" />
 
@@ -107,7 +107,7 @@
             android:id="@+id/rbOption4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/radiocolor"
+            android:background="@color/white"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
             android:textSize="16sp" />
