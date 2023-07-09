@@ -27,7 +27,7 @@ public interface QuestionService {
     @GET("api/question")
     Call<List<qQuestion>> getAllQuestion(@Header("api-key") String api_key);
 
-    @GET("api/book/{id}")
+    @GET("api/question/{qid}")
     Call<qQuestion> getQuestion(@Header("api-key") String api_key, @Path("qid") float qid);
     
     /**
@@ -45,7 +45,7 @@ public interface QuestionService {
     /**
      * Update question by sending a single Book JSON
      */
-    @POST("api/question/update/{qid}")
-    Call<qQuestion> updateQuestion(@Header ("api-key") String apiKey, @Body qQuestion q);
+    @POST("api/question/update")
+    Call<qQuestion> updateQuestion(@Header ("api-key") String apiKey, @Body qQuestion question);
 
 }

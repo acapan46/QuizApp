@@ -4,9 +4,8 @@
     tools:ignore="AppCompatResource">
 
 
-    <item android:id="@+id/menu_delete"
+    <item android:id="@+id/menu_update"
         android:showAsAction="always"
-        android:title="Delete" />
-
+        android:title="Update" />
 
 </menu>

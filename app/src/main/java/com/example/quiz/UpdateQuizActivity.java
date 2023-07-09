@@ -54,14 +54,15 @@ public class UpdateQuizActivity extends AppCompatActivity {
         // retrieve book id from intent
         // get book id sent by BookListActivity, -1 if not found
         Intent intent = getIntent();
-        float qid = intent.getIntExtra("qid", -1);
+        float qid = intent.getFloatExtra("qid", -1);
 
         // get references to the form fields in layout
         txtQuestion = findViewById(R.id.upQuestion);
         txtOption1 = findViewById(R.id.upOption1);
         txtOption2 = findViewById(R.id.upOption2);
-        txtOption3 = findViewById(R.id.upOption4);
-        txtOption4 = findViewById(R.id.upAnswer);
+        txtOption3 = findViewById(R.id.upOption3);
+        txtOption4 = findViewById(R.id.upOption4);
+        txtAnswer = findViewById(R.id.upAnswer);
 
         // retrieve book info from database using the book id
         // get user info from SharedPreferences
@@ -86,6 +87,7 @@ public class UpdateQuizActivity extends AppCompatActivity {
                 txtOption2.setText(question.getOption2());
                 txtOption3.setText(question.getOption3());
                 txtOption4.setText(question.getOption4());
+                txtAnswer.setText(question.getCorrect());
             }
 
             @Override
@@ -118,6 +120,7 @@ public class UpdateQuizActivity extends AppCompatActivity {
         question.setOption2(option2);
         question.setOption3(option3);
         question.setOption4(option4);
+        question.setCorrect(answer);
         question.setUpdatedAt(updatedAt);
 
         Log.d("MyApp:", "Question info: " + question.toString());
@@ -126,8 +129,8 @@ public class UpdateQuizActivity extends AppCompatActivity {
         User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
 
         // send request to update the question record to the REST API
-        QuestionService bookService = ApiUtils.getQuestionService();
-        Call<qQuestion> call = bookService.updateQuestion(user.getToken(), question);
+        QuestionService questionService = ApiUtils.getQuestionService();
+        Call<qQuestion> call = questionService.updateQuestion(user.getToken(), question);
 
         Context context = this;
         // execute
@@ -151,7 +154,7 @@ public class UpdateQuizActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     // end this activity and forward user to BookListActivity
-                    Intent intent = new Intent(context, DeleteQuizActivity.class);
+                    Intent intent = new Intent(context, AdminActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

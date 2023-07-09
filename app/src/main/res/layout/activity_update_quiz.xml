@@ -146,7 +146,8 @@
                 android:id="@+id/btnUpQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Update Question" />
+                android:text="Update Question"
+                android:onClick="updateQuestion" />
 
         </LinearLayout>
 
