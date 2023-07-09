@@ -63,7 +63,7 @@ public class UserRegister extends AppCompatActivity {
                 // get values in form
                 String username = txtUsername.getText().toString();
                 String email = txtEmail.getText().toString();
-                String password = MD5_Hash(txtPassword.getText().toString());
+                String password = txtPassword.getText().toString();
                 String token = generateRandomToken(36);
                 String lease = date;
                 String role = "user";
