@@ -19,7 +19,7 @@ import retrofit2.http.Path;
 public interface ScoreService {
     @FormUrlEncoded
     @POST("api/score")
-    Call<Score> addScore(@Header("api-key") String apiKey, @Field("username") String username,@Field("correct") int correct, @Field("fullScore") int fullScore, @Field("takenAt") String takenAt);
+    Call<Score> addScore(@Header("api-key") String apiKey, @Field("id") int id, @Field("username") String username,@Field("correct") int correct, @Field("fullScore") int fullScore, @Field("takenAt") String takenAt);
 
     @GET("api/score/?order=correct&orderType=DESC")
     Call<List<Score>>getAllScore(@Header("api-key") String apiKey);

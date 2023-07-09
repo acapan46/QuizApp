@@ -24,28 +24,11 @@ public interface QuestionService {
 
     @GET("api/question")
     Call<List<qQuestion>> getAllQuestion(@Header("api-key") String api_key);
-
-    @GET("api/question/{id}")
-    Call<Question> getBook(@Header("api-key") String api_key, @Path("id") int id);
     
     /**
-     * Add book by sending a single Book JSON
-     * @return book object
+     * Add score by sending a single Book JSON
      */
     @POST("api/question")
     Call<qQuestion> addQuestion(@Header ("api-key") String apiKey, @Body qQuestion q);
 
-    /**
-     * Delete book based on the id
-     * @return DeleteResponse object
-     */
-    //@POST("api/book/delete/{id}")
-    //Call<DeleteResponse> deleteBook(@Header ("api-key") String apiKey, @Path("id")
-    //int id);
-    /**
-     * Update book by sending a single Book JSON
-     * @return book object
-     */
-    @POST("api/book/update")
-    Call<Question> updateBook(@Header ("api-key") String apiKey, @Body Question q);
 }

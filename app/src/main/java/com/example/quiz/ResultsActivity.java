@@ -78,7 +78,7 @@ public class ResultsActivity extends AppCompatActivity {
         int fullScore = (QuizActivity.correct + QuizActivity.wrong);
         String takenAt = date;
 
-        Score score = new Score(username,correct,fullScore,takenAt);
+        Score score = new Score(0,username,correct,fullScore,takenAt);
 
         QuizActivity.correct=0;
         QuizActivity.wrong=0;
@@ -86,8 +86,7 @@ public class ResultsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ScoreService scoreService = ApiUtils.getScoreService();
-                //Call<Score> call = scoreService.addScore(user.getToken(),score);
-                Call<Score> call = scoreService.addScore(user.getToken(),username,correct,fullScore,takenAt);
+                Call<Score> call = scoreService.addScore(user.getToken(),0,username,correct,fullScore,takenAt);
                 // execute
                 call.enqueue(new Callback<Score>() {
                     @Override

@@ -22,12 +22,15 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> 
         public TextView tvScore;
         public TextView tvFullScore;
 
+        public TextView tvTakenAt;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
             tvUsername = itemView.findViewById(R.id.tvUsername);
             tvScore = itemView.findViewById(R.id.tvScore);
             tvFullScore = itemView.findViewById(R.id.tvFullScore);
+            tvTakenAt = itemView.findViewById(R.id.tvTakenAt);
         }
         @Override
         public boolean onLongClick(View view) {
@@ -68,6 +71,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> 
         holder.tvUsername.setText("Username: "+ s.getUsername());
         holder.tvScore.setText("Score: "+ s.getCorrect());
         holder.tvFullScore.setText("Full Score: "+ s.getFullScore());
+        holder.tvTakenAt.setText("Taken at: "+ s.getTakenAt());
     }
 
     @Override
