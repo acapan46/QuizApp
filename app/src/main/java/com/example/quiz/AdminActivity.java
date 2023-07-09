@@ -56,10 +56,18 @@ public class AdminActivity extends AppCompatActivity {
 
         // assign action to Book List button
         Button btnAddQuestion = findViewById(R.id.btnAddQuestion);
+        Button btnDelQuestion = findViewById(R.id.btnDelQuestion);
         btnAddQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),AddQuestion.class);
+                startActivity(intent);
+            }
+        });
+        btnDelQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),DeleteQuizActivity.class);
                 startActivity(intent);
             }
         });
