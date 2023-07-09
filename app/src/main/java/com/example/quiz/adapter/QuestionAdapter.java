@@ -22,13 +22,13 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     /**
      * Create ViewHolder class to bind list item view
      */
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
 
 //        public TextView tvOption1;
 //        public TextView tvOption2;
 //        public TextView tvOption3;
 //        public TextView tvOption4;
-//        public TextView tvAnswer;
+        public TextView tvAnswer;
         public TextView tvContent;
 //        public Button btnDel;
 
@@ -36,12 +36,20 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             super(itemView);
 
             tvContent = (TextView) itemView.findViewById(R.id.tvContent);
+            tvAnswer = (TextView) itemView.findViewById(R.id.tvAnswer);
      //       btnDel = (Button) itemView.findViewById(R.id.btnDel);
+            itemView.setOnLongClickListener(this);
         }
+
+        @Override
+        public boolean onLongClick(View v) {
+            currentPos = getAdapterPosition(); //key point, record the position here
+            return false;        }
     }
 
     private List<qQuestion> mListData;   // list of book objects
     private Context mContext;       // activity context
+    private int currentPos;         //current selected position.
 
     public QuestionAdapter(Context context, List<qQuestion> listData){
         mListData = listData;
@@ -69,6 +77,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         // bind data to the view holder
         qQuestion m = mListData.get(position);
         holder.tvContent.setText(m.getContent());
+        holder.tvAnswer.setText(m.getCorrect());
+
     }
 
     @Override
@@ -76,5 +86,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         return mListData.size();
     }
 
-
+    public qQuestion getSelectedItem() {
+        if(currentPos>=0 && mListData!=null && currentPos<mListData.size()) {
+            return mListData.get(currentPos);
+        }
+        return null;
+    }
 }
