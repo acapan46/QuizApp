@@ -95,13 +95,13 @@ public class QuizActivity extends AppCompatActivity {
 
         submitbutton=(Button)findViewById(R.id.button3);
         quitbutton=(Button)findViewById(R.id.buttonquit);
-        tv=(TextView) findViewById(R.id.tvque);
+        tv=(TextView) findViewById(R.id.tvQuestion);
 
-        radio_g=(RadioGroup)findViewById(R.id.answersgrp);
-        rb1=(RadioButton)findViewById(R.id.radioButton);
-        rb2=(RadioButton)findViewById(R.id.radioButton2);
-        rb3=(RadioButton)findViewById(R.id.radioButton3);
-        rb4=(RadioButton)findViewById(R.id.radioButton4);
+        radio_g=(RadioGroup)findViewById(R.id.radioGroupOptions);
+        rb1=(RadioButton)findViewById(R.id.rbOption1);
+        rb2=(RadioButton)findViewById(R.id.rbOption2);
+        rb3=(RadioButton)findViewById(R.id.rbOption3);
+        rb4=(RadioButton)findViewById(R.id.rbOption4);
 
         questionService = ApiUtils.getQuestionService();
         answerService = ApiUtils.getAnswerService();

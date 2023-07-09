@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="QUESTION 1"
-        android:fontFamily="@font/BlackWagoon"
+        android:fontFamily="@font/blackwagoon"
         android:textAlignment="center"
         android:textSize="30dp"
         android:textStyle="bold" />
@@ -120,14 +120,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#00008B"
-        android:fontFamily="@font/BlackWagoon"
+        android:fontFamily="@font/blackwagoon"
         android:text="Next Question" />
     <Button
         android:id="@+id/buttonquit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#00008B"
-        android:fontFamily="@font/BlackWagoon"
+        android:fontFamily="@font/blackwagoon"
         android:text="Quit" />
 
 
