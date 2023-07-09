@@ -14,14 +14,14 @@ import android.widget.Toast;
 import com.example.quiz.model.SharedPrefManager;
 import com.example.quiz.model.User;
 
-public class MainActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity {
 
     Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_admin);
         context = this;
 
         // get reference to the textview
@@ -54,24 +54,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // assign action to Start Quiz button
-        Button btnStart = findViewById(R.id.btnStartQuiz);
-        btnStart.setOnClickListener(new View.OnClickListener() {
+        // assign action to Book List button
+        Button btnAddQuestion = findViewById(R.id.btnAddQuestion);
+        btnAddQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name=  user.getUsername();
-                Intent intent=new Intent(getApplicationContext(),QuizActivity.class);
-                intent.putExtra("myname",name);
-                startActivity(intent);
-            }
-        });
-        Button btnScore = findViewById(R.id.btnScore);
-        btnScore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name=  user.getUsername();
-                Intent intent=new Intent(getApplicationContext(),UserScore.class);
-                intent.putExtra("myname",name);
+                Intent intent=new Intent(getApplicationContext(),AddQuestion.class);
                 startActivity(intent);
             }
         });

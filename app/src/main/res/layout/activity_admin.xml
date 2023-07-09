@@ -10,8 +10,8 @@
         android:id="@+id/txtHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello Quizzers!"
-        app:layout_constraintBottom_toTopOf="@+id/btnStartQuiz"
+        android:text="ADMIN PAGE"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddQuestion"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -30,12 +30,12 @@
         app:layout_constraintVertical_bias="0.686" />
 
     <Button
-        android:id="@+id/btnStartQuiz"
+        android:id="@+id/btnAddQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="156dp"
         android:backgroundTint="#009688"
-        android:text="Start Quiz"
+        android:text="Add Question"
         app:layout_constraintBottom_toTopOf="@+id/btnLogout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -44,14 +44,15 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/btnScore"
+        android:id="@+id/btnDelQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="372dp"
+        android:layout_marginTop="352dp"
         android:backgroundTint="#009688"
-        android:text="User Scores"
+        android:text="Delete Question"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

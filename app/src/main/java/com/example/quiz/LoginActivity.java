@@ -116,16 +116,27 @@ public class LoginActivity extends AppCompatActivity {
                     // parse response to POJO
                     User user = (User) response.body();
                     if (user.getToken() != null) {
-                        // successful login. server replies a token value
-                        displayToast("Login successful");
-                        displayToast("Token: " + user.getToken());
+                        if(user.getRole().equalsIgnoreCase("admin")){
+                            displayToast("Administrator login confirmed");
+                            displayToast("Token: " + user.getToken());
 
-                        // store value in Shared Preferences
-                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-                        // forward user to MainActivity
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            // store value in Shared Preferences
+                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+                            // forward user to MainActivity
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), AdminActivity.class));
+                        }
+                        else if(!user.getRole().equalsIgnoreCase("admin")){
+                            // successful login. server replies a token value
+                            displayToast("Login successful");
+                            displayToast("Token: " + user.getToken());
 
+                            // store value in Shared Preferences
+                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+                            // forward user to MainActivity
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        }
                     }
                 }
                 else if (response.errorBody() != null){

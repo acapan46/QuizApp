@@ -1,6 +1,17 @@
 package com.example.quiz.model;
 
+import java.util.Date;
+
 public class Question {
+
+    private int id;
+    private float qid;
+    private int quizId;
+    private String type;
+    private int active;
+    private String createdAt;
+    private String updatedAt;
+    private String content;
     private String question;
     private String option1;
     private String option2;
