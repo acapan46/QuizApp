@@ -10,13 +10,28 @@
 
     <TextView
         android:id="@+id/tvContent"
-        android:layout_width="104dp"
-        android:layout_height="46dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="6dp"
-        android:text="TextView"
         android:textSize="17sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/tvContent"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDescription"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tvAuthor"-->
+<!--        android:text="TextView" />-->
+
 
 <!--    <Button-->
 <!--        android:id="@+id/btnDel"-->

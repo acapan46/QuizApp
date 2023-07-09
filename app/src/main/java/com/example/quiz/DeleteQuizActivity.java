@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.example.quiz.adapter.QuestionAdapter;
 import com.example.quiz.model.DeleteResponse;
-import com.example.quiz.model.Question;
 import com.example.quiz.model.SharedPrefManager;
 import com.example.quiz.model.User;
 import com.example.quiz.model.qQuestion;
@@ -38,7 +37,6 @@ public class DeleteQuizActivity extends AppCompatActivity {
     QuestionService questionService;
     Context context;
     RecyclerView questionList;
-
     QuestionAdapter adapter;
 
     @Override
@@ -50,9 +48,18 @@ public class DeleteQuizActivity extends AppCompatActivity {
         // get reference to the RecyclerView bookList
         questionList = findViewById(R.id.questionList);
 
-        //start for context menu when longclick
+        //register for context menu
         registerForContextMenu(questionList);
 
+        // update listview
+        updateListView();
+
+    }
+
+    /**
+     * Fetch data for ListView
+     */
+    private void updateListView() {
         // get user info from SharedPreferences
         User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
 
@@ -66,11 +73,16 @@ public class DeleteQuizActivity extends AppCompatActivity {
                 // for debug purpose
                 Log.d("MyApp:", "Response: " + response.raw().toString());
 
+                // token is not valid/expired
+                if (response.code() == 401) {
+                    displayAlert("Session Invalid");
+                }
+
                 // Get list of book object from response
                 List<qQuestion> questions = response.body();
 
                 // initialize adapter
-                QuestionAdapter adapter = new QuestionAdapter(context, questions);
+                adapter = new QuestionAdapter(context, questions);
 
                 // set adapter to the RecyclerView
                 questionList.setAdapter(adapter);
@@ -87,35 +99,81 @@ public class DeleteQuizActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<qQuestion>> call, Throwable t) {
                 Toast.makeText(context, "Error connecting to the server", Toast.LENGTH_LONG).show();
+                displayAlert("Error [" + t.getMessage() + "]");
                 Log.e("MyApp:", t.getMessage());
             }
         });
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.question_context_menu, menu);
     }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         qQuestion selectedQuestion = adapter.getSelectedItem();
         Log.d("MyApp", "selected "+selectedQuestion.toString());
-
-        if(item.getItemId() == R.id.menu_delete){
-            //doDelete(selectedBook);
-        }
-        else if(item.getItemId() == R.id.menu_update){
-            doUpdate(selectedQuestion);
+        switch (item.getItemId()) {
+            case R.id.menu_delete://should match the id in the context menu file
+                doDeleteQuestion(selectedQuestion);
+                break;
         }
         return super.onContextItemSelected(item);
     }
 
-    private void doUpdate(qQuestion selectedBook) {
-        // for debugging purpose
-        Log.d("MyApp:", "launching update activity for "+selectedBook.toString());
-        // launch UpdateBookActivity and pass the book id
-        Intent intent = new Intent(context, UpdateQuizActivity.class);
-        intent.putExtra("qid", selectedBook.getQid());
-        startActivity(intent);
+
+    /**
+     * Delete book record. Called by contextual menu "Delete"
+     * @param selectedQuestion - book selected by user
+     */
+    private void doDeleteQuestion(qQuestion selectedQuestion) {
+        // get user info from SharedPreferences
+        User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
+
+        // prepare REST API call
+        QuestionService questionService = ApiUtils.getQuestionService();
+        Call<DeleteResponse> call = questionService.deleteQuestion(user.getToken(), selectedQuestion.getQid());
+
+        // execute the call
+        call.enqueue(new Callback<DeleteResponse>() {
+            @Override
+            public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
+                if (response.code() == 200) {
+                    // 200 means OK
+                    displayAlert("Question successfully deleted");
+                    // update data in list view
+                    updateListView();
+                } else {
+                    displayAlert("Question failed to delete");
+                    Log.e("MyApp:", response.raw().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DeleteResponse> call, Throwable t) {
+                displayAlert("Error [" + t.getMessage() + "]");
+                Log.e("MyApp:", t.getMessage());
+            }
+        });
+    }
+
+    /**
+     * Displaying an alert dialog with a single button
+     * @param message - message to be displayed
+     */
+    public void displayAlert(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do things
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
